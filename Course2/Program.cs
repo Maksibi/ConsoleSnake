@@ -33,7 +33,7 @@ internal class Program
         SpawnFood();
 
         while (true)
-                {
+        {
             Console.SetCursorPosition(60, 21);
             Console.Write("Нажмите \"R\" для запуска игры");
             Console.SetCursorPosition(60, 22);
@@ -97,7 +97,7 @@ internal class Program
 
                 for (int i = 1; i < length; i++)
                 {
-                    if (headX == foodX && headY == foodY && foodX != body_x[i+2] && foodY != body_y[i+2])
+                    if (body_x[i] == headX && body_y[i] == headY)
                     {
                         isGame = false;
                         Console.SetCursorPosition(60, 20);
@@ -107,12 +107,14 @@ internal class Program
 
                     }
                 }
-                if (headX == foodX && headY == foodY)
+                for (int i = 0; i < length; i++)
                 {
-                    length += 1;
-                    SpawnFood();
+                    if (headX == foodX && headY == foodY && foodX != body_x[i+2] && foodY != body_y[i+2])
+                    {
+                        length += 1;
+                        SpawnFood();
+                    }
                 }
-
 
                 for (int i = 0; i < length; i++)
                 {
@@ -128,7 +130,7 @@ internal class Program
                 Console.Write("Score: " + (length - 3));
                 Console.SetCursorPosition(1, 1);
                 Console.Write("Record: " + maxScore);
-                System.Threading.Thread.Sleep(50);
+            System.Threading.Thread.Sleep(50);
             }
         }
     }
