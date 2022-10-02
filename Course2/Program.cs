@@ -33,9 +33,11 @@ internal class Program
         SpawnFood();
 
         while (true)
-        {
+                {
             Console.SetCursorPosition(60, 21);
             Console.Write("Нажмите \"R\" для запуска игры");
+            Console.SetCursorPosition(60, 22);
+            Console.Write("В случае графических багов кнопка \"H\"");
             ConsoleKeyInfo restartKey;
             Console.SetCursorPosition(0, 0);
             restartKey = Console.ReadKey();
@@ -71,6 +73,7 @@ internal class Program
                     if (control.Key == ConsoleKey.S && dir != 3) dir = 1;
                     if (control.Key == ConsoleKey.A && dir != 0) dir = 2;
                     if (control.Key == ConsoleKey.W && dir != 1) dir = 3;
+                    if (control.Key == ConsoleKey.H) Console.Clear();
                 }
 
                 if (dir == 0) headX += 2;
@@ -94,7 +97,7 @@ internal class Program
 
                 for (int i = 1; i < length; i++)
                 {
-                    if (body_x[i] == headX && body_y[i] == headY)
+                    if (headX == foodX && headY == foodY && foodX != body_x[i+2] && foodY != body_y[i+2])
                     {
                         isGame = false;
                         Console.SetCursorPosition(60, 20);
